@@ -17,7 +17,7 @@ app.use('/api/tutor', tutorRoutes);
 const bookingRoutes = require('./routes/bookingRoutes');
 app.use('/api/bookings', bookingRoutes);
 
-const reviewRoutes = require('./routes/reviewRoutes');
+const reviewRoutes = require('./routes/reviewRoute');
 app.use('/api/reviews', reviewRoutes);
 
 
