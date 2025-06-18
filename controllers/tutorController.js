@@ -29,29 +29,25 @@ const updateTutorProfile = async (req, res) => {
   }
 };
 
-module.exports = { getTutorProfile, updateTutorProfile };
-
-
-
+// Search tutors by subject, grade, location (public search)
 const searchTutors = async (req, res) => {
-    const { subject, grade, location } = req.query;
-  
-    try {
-      const tutors = await Tutor.find({
-        ...(subject && { subjects: { $in: [subject] } }),
-        ...(grade && { grades: { $in: [grade] } }),
-        ...(location && { location: new RegExp(location, 'i') }),
-      });
-  
-      res.status(200).json(tutors);
-    } catch (err) {
-      res.status(500).json({ message: err.message });
-    }
-  };
-  
-  module.exports = {
-    getTutorProfile,
-    updateTutorProfile,
-    searchTutors,
-  };
-  
+  const { subject, grade, location } = req.query;
+
+  try {
+    const tutors = await Tutor.find({
+      ...(subject && { subjects: { $in: [subject] } }),
+      ...(grade && { grades: { $in: [grade] } }),
+      ...(location && { location: new RegExp(location, 'i') }),
+    });
+
+    res.status(200).json(tutors);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+module.exports = {
+  getTutorProfile,
+  updateTutorProfile,
+  searchTutors,
+};

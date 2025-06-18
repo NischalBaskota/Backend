@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { getTutorProfile, updateTutorProfile } = require('../controllers/tutorController');
+
+// Import all tutor controller functions, including searchTutors
+const { getTutorProfile, updateTutorProfile, searchTutors } = require('../controllers/tutorController');
+
+// Middleware to verify JWT token
 const { verifyToken } = require('../middleware/authMiddleware');
 
-// Protect routes with JWT verification
+// Protected routes - require token verification
 router.get('/profile', verifyToken, getTutorProfile);
 router.put('/profile', verifyToken, updateTutorProfile);
 
-router.get('/search', searchTutors); // Public search, no auth needed
+// Public route - no authentication required
+router.get('/search', searchTutors);
 
 module.exports = router;
