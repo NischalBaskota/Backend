@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Tutor = require('../models/Tutor');
-const Parent = require('../models/Parent');
+const Parent = require('../models/Parents');
 
 const registerUser = async (req, res) => {
   const { fullName, email, password, role, address, location } = req.body;
